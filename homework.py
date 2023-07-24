@@ -29,8 +29,8 @@ def test_dark_theme_by_time_and_user_choice():
     #  но учтите что темная тема может быть включена вручную
     is_dark_theme = None
     if dark_theme_enabled_by_user is None:
-        if time(hour=6) < current_time >= time(hour=22):
-            is_dark_theme = True
+        if time(hour=6) < current_time <= time(hour=22):
+            is_dark_theme = False
     else:
         is_dark_theme = dark_theme_enabled_by_user
     assert is_dark_theme is True
@@ -87,7 +87,7 @@ def test_readable_function():
     open_browser(browser_name="Chrome")
     go_to_companyname_homepage(page_url="https://companyname.com")
     find_registration_button_on_login_page(page_url="https://companyname.com/login", button_text="Register")
-    print()
+
 
 def open_browser(browser_name):
     actual_result = print_fun_name(open_browser.__name__, browser_name)
@@ -100,6 +100,5 @@ def go_to_companyname_homepage(page_url):
 
 
 def find_registration_button_on_login_page(page_url, button_text):
-    actual_result = print_fun_name(find_registration_button_on_login_page.__name__.upper(),
-                                   [page_url, ', ', button_text])
+    actual_result = print_fun_name(find_registration_button_on_login_page.__name__.upper(), [page_url, ', ', button_text])
     assert actual_result == "Find Registration Button On Login Page [https://companyname.com/login, Register]"
